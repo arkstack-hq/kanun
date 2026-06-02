@@ -153,6 +153,16 @@ export class PhoneNumber {
     }
 
     /**
+     * 
+     * Get the country country calling code associated with the phone number.
+     * 
+     * @returns 
+     */
+    countryCallingCode (): string {
+        return this.number.countryCallingCode
+    }
+
+    /**
      * Formats the phone number based on the specified country.
      * 
      * @param country 
