@@ -5,7 +5,7 @@ import {
     type PhoneNumber as LibPhoneNumber,
 } from 'libphonenumber-js/max'
 
-import { PHONE_TYPE_MAP, isTypeSupportedByMetadata, normalizeCountry } from './helpers'
+import { PHONE_TYPE_MAP, isPhoneNumberLike, isTypeSupportedByMetadata, normalizeCountry } from './helpers'
 import type { PhoneNumberOptions, PhoneType } from './types'
 
 /**
@@ -44,6 +44,21 @@ export class PhoneNumber {
      * @returns 
      */
     static parse (value: unknown, options: PhoneNumberOptions = {}): PhoneNumber | null {
+        if (value instanceof PhoneNumber) {
+            return value
+        }
+
+        if (isPhoneNumberLike(value)) {
+            if (value.number && typeof value.number.format === 'function') {
+                return PhoneNumber.fromLibPhoneNumber(value.number)
+            }
+
+            return PhoneNumber.parse(value.value, {
+                ...options,
+                country: value.country ?? options.country,
+            })
+        }
+
         if (typeof value !== 'string' && typeof value !== 'number') {
             return null
         }

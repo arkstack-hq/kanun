@@ -35,4 +35,10 @@ export interface PhoneNumberOptions {
     lenient?: boolean
 }
 
+export interface PhoneNumberLike {
+    value: string
+    country?: CountryCode
+    number?: LibPhoneNumber
+}
+
 export type LibPhoneNumberType = NonNullable<ReturnType<LibPhoneNumber['getType']>>

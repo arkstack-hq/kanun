@@ -1,7 +1,7 @@
 import { getCountries, isSupportedCountry, type CountryCode } from 'libphonenumber-js/max'
 import { deepFind } from 'kanun'
 
-import type { LibPhoneNumberType, PhoneRuleOptions, PhoneType, SupportedLibPhoneType } from './types'
+import type { LibPhoneNumberType, PhoneNumberLike, PhoneRuleOptions, PhoneType, SupportedLibPhoneType } from './types'
 
 export const PHONE_TYPE_MAP: Record<SupportedLibPhoneType, LibPhoneNumberType> = {
     fixed_line: 'FIXED_LINE',
@@ -49,6 +49,14 @@ export function normalizeCountry (country: unknown): CountryCode | undefined {
     }
 
     return undefined
+}
+
+export function isPhoneNumberLike (value: unknown): value is PhoneNumberLike {
+    return (
+        typeof value === 'object' &&
+        value !== null &&
+        typeof (value as PhoneNumberLike).value === 'string'
+    )
 }
 
 export function isPhoneType (value: string): value is PhoneType {
