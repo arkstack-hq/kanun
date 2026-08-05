@@ -1,6 +1,6 @@
 {
   "name": "kanun",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Framework-agnostic TypeScript-first validation library.",
   "type": "module",
   "files": [
@@ -16,10 +16,10 @@
     },
     "./package.json": "./package.json"
   },
-  "homepage": "https://arkstack-tmp.github.io/kanun",
+  "homepage": "https://arkstack-hq.github.io/kanun",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arkstack-tmp/kanun.git",
+    "url": "git+https://github.com/arkstack-hq/kanun.git",
     "directory": "packages/validation"
   },
   "keywords": [
